@@ -224,6 +224,6 @@ If you use this code in your research, please cite:
   title={Reward Model Training for Multi-Module Agent RL Finetuning},
   author={Liu, Zijia},
   year={2025},
-  url={https://github.com/m-serious/module_reward_models}
+  url={https://github.com/m-serious/module-reward-models}
 }
 ```
