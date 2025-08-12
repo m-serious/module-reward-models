@@ -1,0 +1,71 @@
+# Training Configuration for Multi-Module Reward Model
+
+# Model Configuration
+model:
+  encoder_name: "Qwen/Qwen3-Embedding-0.6B"  # Latest Qwen3 embedding model
+  embedding_dim: 1024
+  hidden_dim: 2048
+  freeze_encoder_initial: true
+
+# Data Configuration
+data:
+  train_path: "dataset/training_pairs.json"
+  val_path: null  # Optional validation set
+  max_context_length: 2048
+  max_module_length: 512
+  batch_size: 4
+  num_workers: 2
+  shuffle: true
+
+# Stage 0 Configuration (Head-only training)
+stage_0:
+  enabled: true
+  num_epochs: 5
+  learning_rate: 3e-4
+  weight_decay: 0.01
+  warmup_steps: 100
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+  save_frequency: 5  # Save checkpoint every N epochs
+
+# Stage 1 Configuration (Full model fine-tuning)
+stage_1:
+  enabled: true
+  num_epochs: 5
+  encoder_learning_rate: 1e-5
+  head_learning_rate: 1e-4
+  weight_decay: 0.01
+  warmup_steps: 100
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+  load_stage_0_checkpoint: true
+  save_frequency: 5
+
+# Training Configuration
+training:
+  seed: 42
+  use_amp: true  # Automatic Mixed Precision
+  use_wandb: false
+  wandb_project: "module-reward-model"
+  checkpoint_dir: "checkpoints"
+  log_dir: "logs"
+  cache_dir: "cache"
+
+# Evaluation Configuration
+evaluation:
+  compute_metrics_every: 100  # steps
+  save_best_model: true
+  patience: 5  # Early stopping patience
+
+# Module-specific Configuration
+modules:
+  - reflection
+  - planner
+  - executor
+  - memory
+
+# Loss Configuration
+loss:
+  use_margin: true
+  margin_value: 0.1
+  margin_weight: 0.1

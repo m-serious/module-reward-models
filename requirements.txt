@@ -1,0 +1,22 @@
+# Core dependencies
+torch>=2.0.0
+transformers>=4.35.0
+numpy>=1.24.0
+tqdm>=4.65.0
+scikit-learn>=1.3.0
+
+# Data processing
+pandas>=2.0.0
+pyyaml>=6.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Training monitoring (optional)
+wandb>=0.15.0
+tensorboard>=2.13.0
+
+# Utilities
+pathlib2>=2.3.7
+python-dotenv>=1.0.0
