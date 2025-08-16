@@ -107,10 +107,11 @@ bash run_pipeline.sh
 ### 3. Evaluate the Model
 ```bash
 python src/evaluate.py \
-    --checkpoint checkpoints/stage_1_best.pt \
+    --checkpoint checkpoints/mini_demo.pt \
     --data_path dataset/training_pairs.json \
     --plot
 ```
+**Note**: A pre-trained mini demo checkpoint (`checkpoints/mini_demo.pt`, ~120KB) is included for testing purposes.
 
 ## Training Configuration
 
